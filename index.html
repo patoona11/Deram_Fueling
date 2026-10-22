@@ -111,8 +111,8 @@
           </div>
           <div class="bg-white/80 p-3 rounded-xl border border-blue-100 shadow-sm flex items-center justify-between">
             <div>
-              <p class="text-xs text-slate-500 mb-0.5">เลขที่บัญชี</p>
-              <p id="bankAccNo" class="font-bold text-blue-600 font-mono text-base">XXX-X-XXXXX-X</p>
+              <p class="text-xs text-slate-500 mb-0.5">เลขที่บัญชี (ธ.กรุงไทย)</p>
+              <p id="bankAccNo" class="font-bold text-blue-600 font-mono text-base sm:text-lg">408-3-26126-9</p>
             </div>
             <button onclick="copyAccNo()" title="คัดลอกเลขบัญชี" class="text-xs text-slate-400 hover:text-blue-600 p-1.5 hover:bg-blue-50 rounded-lg transition">
               <i class="fa-regular fa-copy text-base"></i>
@@ -326,7 +326,7 @@
   <script>
     // Default or stored configuration
     const DEFAULT_API_ENDPOINT = "https://script.google.com/macros/s/AKfycbzxxc0OpfxS89wg-6Ei-uITi_jpO8oyYlYU59wRyqj_roMWGlGl2MXU6eXyDO64YM0Ytw/exec";
-    const DEFAULT_BANK_ACC = "020-2-34567-8 ธ.กรุงไทย";
+    const DEFAULT_BANK_ACC = "408-3-26126-9";
 
     let selectedBase64 = null;
     let selectedFileName = "";
@@ -341,7 +341,11 @@
         storedApi = DEFAULT_API_ENDPOINT;
         localStorage.setItem('dream70_api_endpoint', DEFAULT_API_ENDPOINT);
       }
-      const storedBank = localStorage.getItem('dream70_bank_acc') || DEFAULT_BANK_ACC;
+      let storedBank = (localStorage.getItem('dream70_bank_acc') || '').trim();
+      if (!storedBank || storedBank.includes('020-2') || storedBank.includes('XXX')) {
+        storedBank = DEFAULT_BANK_ACC;
+        localStorage.setItem('dream70_bank_acc', DEFAULT_BANK_ACC);
+      }
       
       document.getElementById('apiEndpointInput').value = storedApi;
       document.getElementById('bankAccInput').value = storedBank;
