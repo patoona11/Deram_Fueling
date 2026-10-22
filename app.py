@@ -7,7 +7,7 @@ app = Flask(__name__, template_folder='.')
 # คุณสามารถระบุ Google Apps Script Web App URL ได้ที่นี่
 DEFAULT_APPS_SCRIPT_URL = os.environ.get(
     "APPS_SCRIPT_URL", 
-    "https://script.google.com/macros/s/AKfycbz6kRw8c1Kij-pPeupwEueo3-CCEEzilN3Cr0jqVH_E0iitB08DOCBoucYuNiEYLqJk7A/exec"
+    "https://script.google.com/macros/s/AKfycbzxxc0OpfxS89wg-6Ei-uITi_jpO8oyYlYU59wRyqj_roMWGlGl2MXU6eXyDO64YM0Ytw/exec"
 )
 
 @app.route('/')

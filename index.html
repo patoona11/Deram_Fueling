@@ -325,7 +325,7 @@
 
   <script>
     // Default or stored configuration
-    const DEFAULT_API_ENDPOINT = "https://script.google.com/macros/s/AKfycbz6kRw8c1Kij-pPeupwEueo3-CCEEzilN3Cr0jqVH_E0iitB08DOCBoucYuNiEYLqJk7A/exec";
+    const DEFAULT_API_ENDPOINT = "https://script.google.com/macros/s/AKfycbzxxc0OpfxS89wg-6Ei-uITi_jpO8oyYlYU59wRyqj_roMWGlGl2MXU6eXyDO64YM0Ytw/exec";
     const DEFAULT_BANK_ACC = "020-2-34567-8 ธ.กรุงไทย";
 
     let selectedBase64 = null;
@@ -336,7 +336,11 @@
     document.addEventListener('DOMContentLoaded', () => {
       setNowDateTime();
       
-      const storedApi = (localStorage.getItem('dream70_api_endpoint') || '').trim() || DEFAULT_API_ENDPOINT;
+      let storedApi = (localStorage.getItem('dream70_api_endpoint') || '').trim();
+      if (!storedApi || storedApi.includes('AKfycbz6kRw8c1Kij')) {
+        storedApi = DEFAULT_API_ENDPOINT;
+        localStorage.setItem('dream70_api_endpoint', DEFAULT_API_ENDPOINT);
+      }
       const storedBank = localStorage.getItem('dream70_bank_acc') || DEFAULT_BANK_ACC;
       
       document.getElementById('apiEndpointInput').value = storedApi;
@@ -470,7 +474,10 @@
     async function handleSubmit(e) {
       e.preventDefault();
 
-      const apiEndpoint = (localStorage.getItem('dream70_api_endpoint') || '').trim() || DEFAULT_API_ENDPOINT;
+      let apiEndpoint = (localStorage.getItem('dream70_api_endpoint') || '').trim();
+      if (!apiEndpoint || apiEndpoint.includes('AKfycbz6kRw8c1Kij')) {
+        apiEndpoint = DEFAULT_API_ENDPOINT;
+      }
 
       if (!apiEndpoint || !apiEndpoint.trim().startsWith('http')) {
         Swal.fire({
