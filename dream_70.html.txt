@@ -1,0 +1,47 @@
+function doGet(e) {
+  return ContentService.createTextOutput("API ระบบบันทึกข้อมูลทำงานปกติ กรุณาส่งข้อมูลผ่านฟอร์มหน้าเว็บไซต์หลัก");
+}
+
+function doPost(e) {
+  try {
+    // ไอดีของ Google Sheet ที่คุณระบุ
+    var sheetId = '1nLtm2Exrm0YwIsu_bNnHjRrMhrLqpShP2lD-zE3tZiA'; 
+    var sheet = SpreadsheetApp.openById(sheetId).getActiveSheet();
+
+    // รับข้อมูลที่ส่งมาจากเว็บไซต์
+    var data = JSON.parse(e.postData.contents);
+    var name = data.name;
+    var tel = data.tel;
+    var date = data.date;
+    var time = data.time;
+    var amount = data.amount;
+    var fileData = data.file;
+    var fileName = data.fileName;
+    var mimeType = data.mimeType;
+
+    var fileUrl = "";
+    
+    // หากมีการแนบไฟล์มา ให้บันทึกลง Google Drive
+    if (fileData) {
+      var decodedFile = Utilities.base64Decode(fileData);
+      var blob = Utilities.newBlob(decodedFile, mimeType, fileName);
+      
+      // บันทึกไฟล์ลงในโฟลเดอร์หลัก (Root) ของ Google Drive
+      var folder = DriveApp.getRootFolder(); 
+      var file = folder.createFile(blob);
+      fileUrl = file.getUrl();
+    }
+
+    // นำข้อมูลไปเพิ่มในแถวใหม่ของ Google Sheet
+    // คอลัมน์: [A: เวลาบันทึก, B: ชื่อ-สกุล, C: เบอร์โทร, D: วันที่, E: เวลาโอน, F: จำนวนเงิน, G: ลิงก์สลิป]
+    sheet.appendRow([new Date(), name, tel, date, time, amount, fileUrl]);
+
+    // ส่งสถานะกลับไปยังหน้าเว็บว่าสำเร็จ
+    return ContentService.createTextOutput(JSON.stringify({"result": "success", "url": fileUrl}))
+                         .setMimeType(ContentService.MimeType.JSON);
+                         
+  } catch (error) {
+    return ContentService.createTextOutput(JSON.stringify({"result": "error", "error": error.toString()}))
+                         .setMimeType(ContentService.MimeType.JSON);
+  }
+}

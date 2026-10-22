@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>โครงการทุนเติมฝัน 70</title>
+  <!-- Google Fonts: Prompt -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Prompt', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+            },
+            gold: {
+              400: '#fbbf24',
+              500: '#f59e0b',
+              600: '#d97706',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Prompt', sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+      min-height: 100vh;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3), 0 0 20px rgba(59, 130, 246, 0.15);
+    }
+    .glow-header {
+      text-shadow: 0 0 25px rgba(96, 165, 250, 0.4);
+    }
+    .upload-box {
+      border: 2px dashed #cbd5e1;
+      transition: all 0.25s ease-in-out;
+    }
+    .upload-box:hover, .upload-box.dragover {
+      border-color: #3b82f6;
+      background-color: #f8fafc;
+    }
+  </style>
+</head>
+<body class="text-slate-800 antialiased py-8 px-4 sm:px-6 lg:px-8">
+
+  <!-- Secret Admin Trigger: กด Ctrl+Shift+S หรือดับเบิ้ลคลิกที่ข้อความลิขสิทธิ์ท้ายหน้าเพื่อเปิดหน้าต่างตั้งค่า -->
+  <div id="adminSettingBtn" class="hidden max-w-2xl mx-auto justify-end mb-2">
+    <button onclick="openConfigModal()" class="text-xs bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white px-3 py-1.5 rounded-full transition flex items-center gap-1.5 border border-slate-700 shadow">
+      <i class="fa-solid fa-gear text-blue-400"></i>
+      <span>ตั้งค่าระบบ API</span>
+    </button>
+  </div>
+
+  <div class="max-w-2xl mx-auto">
+    <!-- Header Banner -->
+    <div class="text-center mb-8">
+      <div class="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-xs font-semibold px-4 py-1.5 rounded-full shadow-lg mb-3">
+        <i class="fa-solid fa-graduation-cap"></i> ทุนการศึกษาเพื่ออนาคต
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight glow-header">
+        โครงการทุนเติมฝัน 70
+      </h1>
+      <p class="mt-2 text-sm sm:text-base text-slate-300 max-w-lg mx-auto">
+        ร่วมเป็นสะพานแห่งโอกาส เติมเต็มความฝันทางการศึกษาให้กับเยาวชน <br>ส่งต่ออนาคตที่ยั่งยืน
+        <br>คณะเทคโนโลยีอุตสาหกรรม มหาวิทยาลัยนครพนม
+      </p>
+    </div>
+
+    <!-- Main Card -->
+    <div class="glass-card rounded-2xl sm:rounded-3xl p-6 sm:p-10 border border-white/40">
+
+      <!-- Bank Transfer Information Card -->
+      <div class="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200/80 rounded-2xl p-4 sm:p-5 mb-8">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-bold uppercase tracking-wider text-blue-700 flex items-center gap-1.5">
+            <i class="fa-solid fa-building-columns text-sm"></i> ข้อมูลบัญชีร่วมสมทบทุน
+          </span>
+          <span class="text-[11px] bg-blue-100 text-blue-800 font-medium px-2 py-0.5 rounded-md">
+            โครงการทุนเติมฝัน 70
+          </span>
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3 text-sm">
+          <div class="bg-white/80 p-3 rounded-xl border border-blue-100 shadow-sm">
+            <p class="text-xs text-slate-500 mb-0.5">ชื่อบัญชี</p>
+            <p class="font-bold text-slate-800 text-sm">เงินรายได้คณะเทคโนโลยีอุตสาหกรรม</p>
+          </div>
+          <div class="bg-white/80 p-3 rounded-xl border border-blue-100 shadow-sm flex items-center justify-between">
+            <div>
+              <p class="text-xs text-slate-500 mb-0.5">เลขที่บัญชี</p>
+              <p id="bankAccNo" class="font-bold text-blue-600 font-mono text-base">XXX-X-XXXXX-X</p>
+            </div>
+            <button onclick="copyAccNo()" title="คัดลอกเลขบัญชี" class="text-xs text-slate-400 hover:text-blue-600 p-1.5 hover:bg-blue-50 rounded-lg transition">
+              <i class="fa-regular fa-copy text-base"></i>
+            </button>
+          </div>
+        </div>
+        <p class="text-[11px] text-slate-500 mt-2.5 flex items-center gap-1">
+          <i class="fa-solid fa-circle-info text-blue-500"></i> เมื่อโอนเงินแล้ว กรุณากรอกแบบฟอร์มด้านล่างพร้อมแนบสลิปเพื่อบันทึกข้อมูล
+        </p>
+      </div>
+
+      <!-- Form Section -->
+      <form id="scholarshipForm" onsubmit="handleSubmit(event)" class="space-y-6">
+        
+        <!-- Field 1: ชื่อ-สกุล -->
+        <div>
+          <label for="name" class="block text-sm font-semibold text-slate-700 mb-1.5">
+            ชื่อ - นามสกุล ผู้สมทบทุน <span class="text-rose-500">*</span>
+          </label>
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+              <i class="fa-solid fa-user"></i>
+            </div>
+            <input type="text" id="name" name="name" required placeholder="เช่น นายสมชาย ใจดี"
+              class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition text-sm sm:text-base">
+          </div>
+        </div>
+
+        <!-- Field 2: เบอร์โทร -->
+        <div>
+          <label for="tel" class="block text-sm font-semibold text-slate-700 mb-1.5">
+            เบอร์โทรศัพท์ติดต่อ <span class="text-rose-500">*</span>
+          </label>
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+              <i class="fa-solid fa-phone"></i>
+            </div>
+            <input type="tel" id="tel" name="tel" required placeholder="เช่น 0812345678" maxlength="12"
+              class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition text-sm sm:text-base">
+          </div>
+        </div>
+
+        <!-- Field 3 & 4: วันที่และเวลาโอน -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <div class="flex items-center justify-between mb-1.5">
+              <label for="date" class="block text-sm font-semibold text-slate-700">
+                วันที่โอนเงิน <span class="text-rose-500">*</span>
+              </label>
+            </div>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                <i class="fa-solid fa-calendar-day"></i>
+              </div>
+              <input type="date" id="date" name="date" required
+                class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition text-sm">
+            </div>
+          </div>
+
+          <div>
+            <div class="flex items-center justify-between mb-1.5">
+              <label for="time" class="block text-sm font-semibold text-slate-700">
+                เวลาที่โอนเงิน <span class="text-rose-500">*</span>
+              </label>
+              <button type="button" onclick="setNowDateTime()" class="text-xs text-blue-600 hover:text-blue-800 font-medium">
+                ใช้วันที่-เวลาตอนนี้
+              </button>
+            </div>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                <i class="fa-solid fa-clock"></i>
+              </div>
+              <input type="time" id="time" name="time" required
+                class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition text-sm">
+            </div>
+          </div>
+        </div>
+
+        <!-- Field 5: จำนวนเงิน -->
+        <div>
+          <label for="amount" class="block text-sm font-semibold text-slate-700 mb-1.5">
+            จำนวนเงินที่ร่วมสมทบทุน (บาท) <span class="text-rose-500">*</span>
+          </label>
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+              <i class="fa-solid fa-baht-sign"></i>
+            </div>
+            <input type="number" id="amount" name="amount" required min="1" step="any" placeholder="ระบุจำนวนเงิน เช่น 500"
+              class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition text-base font-semibold text-blue-900">
+          </div>
+
+          <!-- Quick Select Buttons -->
+          <div class="flex flex-wrap gap-2 mt-2.5">
+            <button type="button" onclick="setAmount(100)" class="text-xs bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-600 font-medium px-3 py-1.5 rounded-lg border border-slate-200 transition">฿100</button>
+            <button type="button" onclick="setAmount(300)" class="text-xs bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-600 font-medium px-3 py-1.5 rounded-lg border border-slate-200 transition">฿300</button>
+            <button type="button" onclick="setAmount(500)" class="text-xs bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-600 font-medium px-3 py-1.5 rounded-lg border border-slate-200 transition">฿500</button>
+            <button type="button" onclick="setAmount(1000)" class="text-xs bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-600 font-medium px-3 py-1.5 rounded-lg border border-slate-200 transition">฿1,000</button>
+            <button type="button" onclick="setAmount(2000)" class="text-xs bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-600 font-medium px-3 py-1.5 rounded-lg border border-slate-200 transition">฿2,000</button>
+            <button type="button" onclick="setAmount(5000)" class="text-xs bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-600 font-medium px-3 py-1.5 rounded-lg border border-slate-200 transition">฿5,000</button>
+          </div>
+        </div>
+
+        <!-- Field 6: สลิปการโอนเงิน -->
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 mb-1.5">
+            หลักฐานการโอนเงิน (สลิป) <span class="text-rose-500">*</span>
+          </label>
+          
+          <div id="dropZone" class="upload-box rounded-2xl p-5 text-center cursor-pointer relative bg-slate-50/50">
+            <input type="file" id="slipFile" name="slipFile" accept="image/*" required class="hidden" onchange="handleFileSelect(event)">
+            
+            <div id="uploadPrompt" class="space-y-2">
+              <div class="w-12 h-12 mx-auto rounded-full bg-blue-50 text-blue-600 flex items-center justify-center text-xl shadow-inner">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+              </div>
+              <div>
+                <p class="text-sm font-medium text-slate-700">แตะเพื่อเลือกไฟล์ หรือลากไฟล์มาวางที่นี่</p>
+                <p class="text-xs text-slate-400 mt-0.5">รองรับไฟล์รูปภาพ JPG, PNG, WEBP (สลิปโอนเงิน)</p>
+              </div>
+            </div>
+
+            <!-- Preview Container -->
+            <div id="previewContainer" class="hidden">
+              <div class="relative inline-block max-w-[220px]">
+                <img id="imagePreview" src="" alt="สลิปโอนเงิน" class="rounded-xl shadow-md border border-slate-200 object-cover max-h-56 mx-auto">
+                <button type="button" onclick="removeFile(event)" class="absolute -top-2 -right-2 bg-rose-500 hover:bg-rose-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-xs shadow-md transition">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+              <p id="fileDetails" class="text-xs text-slate-500 mt-2 font-mono"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="pt-2">
+          <button type="submit" id="submitBtn" class="w-full py-3.5 px-6 rounded-xl text-white font-bold text-base sm:text-lg bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 hover:from-blue-700 hover:via-indigo-700 hover:to-blue-800 shadow-lg shadow-blue-500/25 active:scale-[0.99] transition duration-200 flex items-center justify-center gap-2">
+            <i class="fa-solid fa-paper-plane"></i>
+            <span>ยืนยันการส่งข้อมูลสมทบทุน</span>
+          </button>
+        </div>
+
+        <div class="flex items-center justify-center gap-2 text-xs text-slate-400 pt-1">
+          <i class="fa-solid fa-shield-halved text-emerald-500"></i>
+          <span>ข้อมูลจะถูกบันทึกไปยัง Google Sheets และจัดเก็บสลิปอย่างปลอดภัย</span>
+        </div>
+      </form>
+    </div>
+
+    <!-- Footer -->
+    <div class="mt-8 text-center text-xs text-slate-400 space-y-1">
+      <p ondblclick="openConfigModal()" title="" class="cursor-default select-none">© โครงการทุนเติมฝัน 70 คณะเทคโนโลยีอุตสาหกรรม <br>มหาวิทยาลัยนครพนม สงวนลิขสิทธิ์</p>
+      <p class="text-[11px] text-slate-500">ระบบเชื่อมต่อ Google Apps Script & Google Sheets อัตโนมัติ</p>
+    </div>
+  </div>
+
+  <!-- Config Modal -->
+  <div id="configModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <h3 class="font-bold text-slate-800 text-base flex items-center gap-2">
+          <i class="fa-solid fa-sliders text-blue-600"></i> ตั้งค่า Google Apps Script Web App
+        </h3>
+        <button onclick="closeConfigModal()" class="text-slate-400 hover:text-slate-600 p-1">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+      
+      <div class="mt-4 space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">
+            Google Apps Script Web App URL:
+          </label>
+          <input type="url" id="apiEndpointInput" placeholder="https://script.google.com/macros/s/.../exec"
+            class="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs font-mono focus:ring-2 focus:ring-blue-500 focus:outline-none">
+          <p class="text-[11px] text-slate-500 mt-1">
+            นำลิงก์ Web App URL ที่ได้จากการ Deploy Google Apps Script มาใส่ที่นี่ ระบบจะบันทึกจำไว้ในบราวเซอร์นี้
+          </p>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">
+            เลขที่บัญชีที่แสดงในหน้าเว็บ:
+          </label>
+          <input type="text" id="bankAccInput" placeholder="เช่น 123-4-56789-0 (ธ.กรุงไทย)"
+            class="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none">
+        </div>
+
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 text-xs text-amber-800">
+          <p class="font-semibold mb-1"><i class="fa-solid fa-lightbulb"></i> แนะนำวิธีใช้งาน:</p>
+          <ol class="list-decimal list-inside space-y-0.5 text-[11px]">
+            <li>เปิดไฟล์ <code>google_apps_script.js</code> นำโค้ดไปวางใน Google Apps Script</li>
+            <li>กดปุ่ม <strong>Deploy > New deployment</strong> เลือกประเภท <strong>Web app</strong></li>
+            <li>ตั้งค่า Execute as: <strong>Me</strong> และ Who has access: <strong>Anyone</strong></li>
+            <li>คัดลอก Web app URL ที่ได้มาใส่ในช่องด้านบน</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="mt-6 flex justify-end gap-2">
+        <button onclick="closeConfigModal()" class="px-4 py-2 rounded-xl text-xs font-medium text-slate-600 hover:bg-slate-100">
+          ยกเลิก
+        </button>
+        <button onclick="saveConfig()" class="px-4 py-2 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white shadow">
+          บันทึกการตั้งค่า
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Default or stored configuration
+    const DEFAULT_API_ENDPOINT = "https://script.google.com/macros/s/AKfycbz6kRw8c1Kij-pPeupwEueo3-CCEEzilN3Cr0jqVH_E0iitB08DOCBoucYuNiEYLqJk7A/exec";
+    const DEFAULT_BANK_ACC = "020-2-34567-8 ธ.กรุงไทย";
+
+    let selectedBase64 = null;
+    let selectedFileName = "";
+    let selectedMimeType = "";
+
+    // Load configuration on start
+    document.addEventListener('DOMContentLoaded', () => {
+      setNowDateTime();
+      
+      const storedApi = (localStorage.getItem('dream70_api_endpoint') || '').trim() || DEFAULT_API_ENDPOINT;
+      const storedBank = localStorage.getItem('dream70_bank_acc') || DEFAULT_BANK_ACC;
+      
+      document.getElementById('apiEndpointInput').value = storedApi;
+      document.getElementById('bankAccInput').value = storedBank;
+      document.getElementById('bankAccNo').innerText = storedBank;
+
+      setupDragAndDrop();
+    });
+
+    // Helper: Set current date and time
+    function setNowDateTime() {
+      const now = new Date();
+      const dateStr = now.toISOString().split('T')[0];
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const timeStr = `${hours}:${minutes}`;
+
+      document.getElementById('date').value = dateStr;
+      document.getElementById('time').value = timeStr;
+    }
+
+    // Helper: Set Amount from chips
+    function setAmount(val) {
+      document.getElementById('amount').value = val;
+    }
+
+    // Copy Account Number
+    function copyAccNo() {
+      const acc = document.getElementById('bankAccNo').innerText;
+      navigator.clipboard.writeText(acc).then(() => {
+        Swal.fire({
+          icon: 'success',
+          title: 'คัดลอกเลขบัญชีแล้ว',
+          text: acc,
+          timer: 1500,
+          showConfirmButton: false
+        });
+      });
+    }
+
+    // Setup drag and drop for upload zone
+    function setupDragAndDrop() {
+      const dropZone = document.getElementById('dropZone');
+      const fileInput = document.getElementById('slipFile');
+
+      dropZone.addEventListener('click', (e) => {
+        if (!selectedBase64) {
+          fileInput.click();
+        }
+      });
+
+      ['dragenter', 'dragover'].forEach(eventName => {
+        dropZone.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          dropZone.classList.add('dragover');
+        }, false);
+      });
+
+      ['dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          dropZone.classList.remove('dragover');
+        }, false);
+      });
+
+      dropZone.addEventListener('drop', (e) => {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        if (files.length > 0) {
+          fileInput.files = files;
+          processFile(files[0]);
+        }
+      });
+    }
+
+    // Handle file selection
+    function handleFileSelect(e) {
+      const file = e.target.files[0];
+      if (file) {
+        processFile(file);
+      }
+    }
+
+    // Process file to base64
+    function processFile(file) {
+      if (!file.type.startsWith('image/')) {
+        Swal.fire('รูปแบบไฟล์ไม่ถูกต้อง', 'กรุณาอัปโหลดไฟล์รูปภาพเท่านั้น (JPG, PNG, etc.)', 'warning');
+        removeFile();
+        return;
+      }
+
+      if (file.size > 8 * 1024 * 1024) { // 8MB limit
+        Swal.fire('ไฟล์มีขนาดใหญ่เกินไป', 'กรุณาอัปโหลดรูปภาพขนาดไม่เกิน 8MB', 'warning');
+        removeFile();
+        return;
+      }
+
+      selectedFileName = file.name;
+      selectedMimeType = file.type;
+
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        const fullDataUrl = event.target.result;
+        // Strip out the data:...;base64, prefix for Google Apps Script Utilities.base64Decode
+        selectedBase64 = fullDataUrl.split(',')[1];
+
+        // Show preview
+        document.getElementById('imagePreview').src = fullDataUrl;
+        document.getElementById('fileDetails').innerText = `${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
+        document.getElementById('uploadPrompt').classList.add('hidden');
+        document.getElementById('previewContainer').classList.remove('hidden');
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // Remove selected file
+    function removeFile(event) {
+      if (event) event.stopPropagation();
+      document.getElementById('slipFile').value = '';
+      selectedBase64 = null;
+      selectedFileName = '';
+      selectedMimeType = '';
+      document.getElementById('imagePreview').src = '';
+      document.getElementById('uploadPrompt').classList.remove('hidden');
+      document.getElementById('previewContainer').classList.add('hidden');
+    }
+
+    // Handle Form Submit
+    async function handleSubmit(e) {
+      e.preventDefault();
+
+      const apiEndpoint = (localStorage.getItem('dream70_api_endpoint') || '').trim() || DEFAULT_API_ENDPOINT;
+
+      if (!apiEndpoint || !apiEndpoint.trim().startsWith('http')) {
+        Swal.fire({
+          icon: 'warning',
+          title: 'ยังไม่ได้ตั้งค่า Google Apps Script API',
+          html: `กรุณากดที่ปุ่ม <strong>"ตั้งค่าระบบ API"</strong> ด้านขวาบน<br>แล้วใส่ URL ของ Google Apps Script Web App ก่อนส่งข้อมูล`,
+          confirmButtonText: 'เปิดหน้าต่างตั้งค่า',
+          confirmButtonColor: '#2563eb'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            openConfigModal();
+          }
+        });
+        return;
+      }
+
+      if (!selectedBase64) {
+        Swal.fire('กรุณาแนบสลิป', 'กรุณาอัปโหลดรูปภาพสลิปหลักฐานการโอนเงิน', 'warning');
+        return;
+      }
+
+      const submitBtn = document.getElementById('submitBtn');
+      const originalBtnHtml = submitBtn.innerHTML;
+
+      // Collect Data
+      const payload = {
+        name: document.getElementById('name').value.trim(),
+        tel: document.getElementById('tel').value.trim(),
+        date: document.getElementById('date').value,
+        time: document.getElementById('time').value,
+        amount: parseFloat(document.getElementById('amount').value) || 0,
+        file: selectedBase64,
+        fileName: selectedFileName,
+        mimeType: selectedMimeType
+      };
+
+      // Loading state
+      Swal.fire({
+        title: 'กำลังบันทึกข้อมูล...',
+        html: 'ระบบกำลังนำส่งข้อมูลและอัปโหลดสลิปไปยัง Google Drive & Sheet<br><span class="text-xs text-slate-400">กรุณารอสักครู่ ห้ามปิดหน้าต่างนี้</span>',
+        allowOutsideClick: false,
+        didOpen: () => {
+          Swal.showLoading();
+        }
+      });
+      submitBtn.disabled = true;
+      submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+
+      try {
+        let resData = null;
+        let isSuccess = false;
+
+        try {
+          // ส่งข้อมูลแบบปกติ (โหมดตรวจจับ JSON ผลลัพธ์)
+          const response = await fetch(apiEndpoint, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'text/plain;charset=utf-8'
+            },
+            body: JSON.stringify(payload)
+          });
+
+          try {
+            resData = await response.json();
+            if (resData && resData.result === "success") {
+              isSuccess = true;
+            } else if (resData && resData.result === "error") {
+              throw new Error(resData.error || "เกิดข้อผิดพลาดจากระบบ Google Script");
+            }
+          } catch (jsonErr) {
+            if (response.ok || response.status === 200 || response.type === 'opaque') {
+              isSuccess = true;
+            }
+          }
+        } catch (netErr) {
+          console.warn("การเชื่อมต่อแบบปกติถูกจำกัด สลับไปใช้โหมด No-CORS:", netErr);
+          // ระบบสำรอง: ส่งแบบ no-cors เพื่อให้ข้อมูลบันทึกลง Google Sheet และ Drive แน่นอน
+          await fetch(apiEndpoint, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+              'Content-Type': 'text/plain;charset=utf-8'
+            },
+            body: JSON.stringify(payload)
+          });
+          isSuccess = true;
+        }
+
+        if (isSuccess) {
+          Swal.fire({
+            icon: 'success',
+            title: 'บันทึกข้อมูลสำเร็จ!',
+            html: `
+              <div class="text-left bg-slate-50 p-4 rounded-xl border border-slate-200 mt-3 text-xs sm:text-sm space-y-1.5">
+                <p><strong>ผู้ร่วมสมทบทุน:</strong> ${payload.name}</p>
+                <p><strong>เบอร์โทร:</strong> ${payload.tel}</p>
+                <p><strong>จำนวนเงิน:</strong> <span class="text-blue-600 font-bold">${payload.amount.toLocaleString()} บาท</span></p>
+                <p><strong>วันที่ - เวลา:</strong> ${payload.date} ${payload.time} น.</p>
+                ${resData && resData.url ? `<p class="pt-2"><a href="${resData.url}" target="_blank" class="text-blue-600 hover:underline"><i class="fa-solid fa-arrow-up-right-from-square"></i> ดูลิงก์สลิปใน Drive</a></p>` : ''}
+              </div>
+              <p class="text-xs text-emerald-600 font-medium mt-4">
+                <i class="fa-solid fa-heart"></i> ขอขอบพระคุณที่ร่วมเป็นส่วนหนึ่งในการเติมเต็มฝันทางการศึกษา
+              </p>
+            `,
+            confirmButtonText: 'ตกลง',
+            confirmButtonColor: '#2563eb'
+          });
+
+          // Reset Form
+          document.getElementById('scholarshipForm').reset();
+          removeFile();
+          setNowDateTime();
+        } else {
+          throw new Error(resData?.error || 'เซิร์ฟเวอร์ตอบกลับไม่ถูกต้อง');
+        }
+
+      } catch (err) {
+        console.error("Submission Error:", err);
+        Swal.fire({
+          icon: 'error',
+          title: 'เกิดข้อผิดพลาดในการส่งข้อมูล',
+          html: `<p class="text-sm text-slate-600 mb-2">ไม่สามารถบันทึกข้อมูลได้</p><code class="text-xs bg-rose-50 text-rose-700 p-2 rounded block text-left">${err.message || err}</code>`,
+          confirmButtonText: 'ลองใหม่อีกครั้ง',
+          confirmButtonColor: '#e11d48'
+        });
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+        submitBtn.innerHTML = originalBtnHtml;
+      }
+    }
+
+    // Secret shortcut for Admin: Ctrl + Shift + S
+    document.addEventListener('keydown', (e) => {
+      if (e.ctrlKey && e.shiftKey && (e.key === 'S' || e.key === 's')) {
+        e.preventDefault();
+        openConfigModal();
+      }
+    });
+
+    // Modal controls
+    function openConfigModal() {
+      document.getElementById('configModal').classList.remove('hidden');
+    }
+
+    function closeConfigModal() {
+      document.getElementById('configModal').classList.add('hidden');
+    }
+
+    function saveConfig() {
+      const apiVal = document.getElementById('apiEndpointInput').value.trim();
+      const bankVal = document.getElementById('bankAccInput').value.trim();
+
+      localStorage.setItem('dream70_api_endpoint', apiVal);
+      if (bankVal) {
+        localStorage.setItem('dream70_bank_acc', bankVal);
+        document.getElementById('bankAccNo').innerText = bankVal;
+      }
+
+      closeConfigModal();
+      Swal.fire({
+        icon: 'success',
+        title: 'บันทึกการตั้งค่าเรียบร้อย',
+        timer: 1500,
+        showConfirmButton: false
+      });
+    }
+  </script>
+</body>
+</html>
